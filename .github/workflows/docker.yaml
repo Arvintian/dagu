@@ -52,6 +52,7 @@ jobs:
             ghcr.io/${{ github.repository }}:${{ env.VERSION }}
   # Build and push alpine-based dev image
   docker-dev:
+    if: ${{ hashFiles('Dockerfile.dev') != '' }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -95,6 +96,7 @@ jobs:
             ghcr.io/${{ github.repository }}:${{ env.VERSION }}-dev
   # Build and push ubuntu-based dev image
   docker-alpine:
+    if: ${{ hashFiles('Dockerfile.alpine') != '' }}
     runs-on: ubuntu-latest
     permissions:
       contents: read

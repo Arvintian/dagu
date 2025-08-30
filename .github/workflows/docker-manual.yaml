@@ -9,7 +9,7 @@ on:
         type: string
 
 jobs:
-  docker-latest:
+  docker-default:
     name: Build and push default image
     runs-on: ubuntu-latest
     permissions:
@@ -61,6 +61,7 @@ jobs:
 
   docker-dev:
     name: Build and push dev image
+    if: ${{ hashFiles('Dockerfile.dev') != '' }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -112,6 +113,7 @@ jobs:
 
   docker-alpine:
     name: Build and push alpine image
+    if: ${{ hashFiles('Dockerfile.alpine') != '' }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
